@@ -394,6 +394,7 @@ func (c *Config) UnmarshalYAML(unmarshal func(interface{}) error) error {
 				wcc.APIURL.Path += "/"
 			}
 		}
+
 		for _, voc := range rcv.VictorOpsConfigs {
 			if voc.HTTPConfig == nil {
 				voc.HTTPConfig = c.Global.HTTPConfig
@@ -711,6 +712,7 @@ type Receiver struct {
 	HipchatConfigs   []*HipchatConfig   `yaml:"hipchat_configs,omitempty" json:"hipchat_configs,omitempty"`
 	SlackConfigs     []*SlackConfig     `yaml:"slack_configs,omitempty" json:"slack_configs,omitempty"`
 	WebhookConfigs   []*WebhookConfig   `yaml:"webhook_configs,omitempty" json:"webhook_configs,omitempty"`
+	AliyunSmsConfigs []*AliyunSmsConfig `yaml:"aliyunsms_configs,omitempty" json:"aliyunsms_configs,omitempty"`
 	OpsGenieConfigs  []*OpsGenieConfig  `yaml:"opsgenie_configs,omitempty" json:"opsgenie_configs,omitempty"`
 	WechatConfigs    []*WechatConfig    `yaml:"wechat_configs,omitempty" json:"wechat_configs,omitempty"`
 	PushoverConfigs  []*PushoverConfig  `yaml:"pushover_configs,omitempty" json:"pushover_configs,omitempty"`

@@ -2,6 +2,7 @@ module github.com/prometheus/alertmanager
 
 require (
 	github.com/alecthomas/units v0.0.0-20190717042225-c3de453c63f4
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.235
 	github.com/cenkalti/backoff/v4 v4.0.2
 	github.com/cespare/xxhash v1.1.0
 	github.com/go-kit/kit v0.10.0

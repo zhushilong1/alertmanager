@@ -47,6 +47,7 @@ import (
 	"github.com/prometheus/alertmanager/inhibit"
 	"github.com/prometheus/alertmanager/nflog"
 	"github.com/prometheus/alertmanager/notify"
+	"github.com/prometheus/alertmanager/notify/aliyunsms"
 	"github.com/prometheus/alertmanager/notify/email"
 	"github.com/prometheus/alertmanager/notify/hipchat"
 	"github.com/prometheus/alertmanager/notify/opsgenie"
@@ -153,6 +154,9 @@ func buildReceiverIntegrations(nc *config.Receiver, tmpl *template.Template, log
 	}
 	for i, c := range nc.WechatConfigs {
 		add("wechat", i, c, func(l log.Logger) (notify.Notifier, error) { return wechat.New(c, tmpl, l) })
+	}
+	for i, c := range nc.AliyunSmsConfigs {
+		add("aliyunsms", i, c, func(l log.Logger) (notify.Notifier, error) { return aliyunsms.New(c, tmpl, l) })
 	}
 	for i, c := range nc.SlackConfigs {
 		add("slack", i, c, func(l log.Logger) (notify.Notifier, error) { return slack.New(c, tmpl, l) })

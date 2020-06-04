@@ -115,6 +115,15 @@ var (
 		AgentID: `{{ template "wechat.default.agent_id" . }}`,
 	}
 
+	// DefaultWechatConfig defines default values for wechat configurations.
+	DefaultAliyunSmsConfig = AliyunSmsConfig{
+		NotifierConfig: NotifierConfig{
+			VSendResolved: false,
+		},
+		Message: `{{ template "aliyunsms.default.message" . }}`,
+		ToUsers: `{{ template "aliyunsms.default.to_users" . }}`,
+	}
+
 	// DefaultVictorOpsConfig defines default values for VictorOps configurations.
 	DefaultVictorOpsConfig = VictorOpsConfig{
 		NotifierConfig: NotifierConfig{
@@ -447,6 +456,23 @@ type WechatConfig struct {
 func (c *WechatConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	*c = DefaultWechatConfig
 	type plain WechatConfig
+	return unmarshal((*plain)(c))
+}
+
+// AliyunSmsConfig configures notifications via AliyunSms.
+type AliyunSmsConfig struct {
+	NotifierConfig `yaml:",inline" json:",inline"`
+
+	AccessKeyId  string `yaml:"access_key_id,omitempty" json:"access_key_id,omitempty"`
+	AccessSecret string `yaml:"access_secret,omitempty" json:"access_secret,omitempty"`
+	Message      string `yaml:"message,omitempty" json:"message,omitempty"`
+	ToUsers      string `yaml:"to_users,omitempty" json:"to_user,omitempty"`
+}
+
+// UnmarshalYAML implements the yaml.Unmarshaler interface.
+func (c *AliyunSmsConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	*c = DefaultAliyunSmsConfig
+	type plain AliyunSmsConfig
 	return unmarshal((*plain)(c))
 }
 

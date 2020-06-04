@@ -8,6 +8,19 @@ github.com/alecthomas/template/parse
 # github.com/alecthomas/units v0.0.0-20190717042225-c3de453c63f4
 ## explicit
 github.com/alecthomas/units
+# github.com/aliyun/alibaba-cloud-sdk-go v1.61.235
+## explicit
+github.com/aliyun/alibaba-cloud-sdk-go/sdk
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth/credentials
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth/credentials/provider
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth/signers
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/endpoints
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/errors
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses
+github.com/aliyun/alibaba-cloud-sdk-go/sdk/utils
+github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi
 # github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da
 github.com/armon/go-metrics
 # github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496
@@ -127,6 +140,10 @@ github.com/hashicorp/memberlist
 # github.com/jessevdk/go-flags v1.4.0
 ## explicit
 github.com/jessevdk/go-flags
+# github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af
+github.com/jmespath/go-jmespath
+# github.com/json-iterator/go v1.1.9
+github.com/json-iterator/go
 # github.com/julienschmidt/httprouter v1.2.0
 github.com/julienschmidt/httprouter
 # github.com/kylelemons/godebug v1.1.0
@@ -144,6 +161,10 @@ github.com/matttproud/golang_protobuf_extensions/pbutil
 github.com/miekg/dns
 # github.com/mitchellh/mapstructure v1.1.2
 github.com/mitchellh/mapstructure
+# github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v1.0.1
+github.com/modern-go/reflect2
 # github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223
 github.com/mwitkow/go-conntrack
 # github.com/oklog/run v1.1.0
@@ -288,6 +309,8 @@ google.golang.org/protobuf/types/known/timestamppb
 # gopkg.in/alecthomas/kingpin.v2 v2.2.6
 ## explicit
 gopkg.in/alecthomas/kingpin.v2
+# gopkg.in/ini.v1 v1.42.0
+gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.3.0
 ## explicit
 gopkg.in/yaml.v2
