@@ -120,7 +120,6 @@ var (
 		NotifierConfig: NotifierConfig{
 			VSendResolved: false,
 		},
-		Message: `{{ template "aliyunsms.default.message" . }}`,
 		ToUsers: `{{ template "aliyunsms.default.to_users" . }}`,
 	}
 
@@ -465,7 +464,6 @@ type AliyunSmsConfig struct {
 
 	AccessKeyId  string `yaml:"access_key_id,omitempty" json:"access_key_id,omitempty"`
 	AccessSecret string `yaml:"access_secret,omitempty" json:"access_secret,omitempty"`
-	Message      string `yaml:"message,omitempty" json:"message,omitempty"`
 	ToUsers      string `yaml:"to_users,omitempty" json:"to_user,omitempty"`
 }
 

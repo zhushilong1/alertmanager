@@ -14,6 +14,7 @@
 package aliyunsms
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 
@@ -46,6 +47,13 @@ type aliyunSmsResponse struct {
 	Code      string `json:"Code"`
 }
 
+type aliyunSmsMessageContent struct {
+	Type    string `json:"type"`
+	TimeStr string `json:"time"`
+	Event   string `json:"event"`
+	Error   string `json:"error"`
+}
+
 // New returns a new AliyunSms notifier.
 func New(c *config.AliyunSmsConfig, t *template.Template, l log.Logger) (*Notifier, error) {
 	client, err := dysmsapi.NewClientWithAccessKey("cn-hangzhou", c.AccessKeyId, c.AccessSecret)
@@ -67,7 +75,7 @@ func (n *Notifier) Notify(ctx context.Context, as ...*types.Alert) (bool, error)
 	data := notify.GetTemplateData(ctx, n.tmpl, as, n.logger)
 
 	tmpl := notify.TmplText(n.tmpl, data, &err)
-	fmt.Print(data)
+
 	if err != nil {
 		return false, err
 	}
@@ -79,19 +87,37 @@ func (n *Notifier) Notify(ctx context.Context, as ...*types.Alert) (bool, error)
 	request.Scheme = "https"
 
 	request.PhoneNumbers = tmpl(n.conf.ToUsers)
-	request.SignName = "五二九七"
-	request.TemplateCode = "SMS_162733468"
+	request.SignName = "优路教育"
+	request.TemplateCode = "SMS_192370717"
 
-	request.TemplateParam = `{"code":"123455"}`
+	alert01 := data.Alerts[0]
+
+	var resultParam bytes.Buffer
+	resultParam.WriteString("微服务 ")
+	resultParam.WriteString(alert01.Labels["serverity"])
+	resultParam.WriteString(" 于 ")
+	resultParam.WriteString(alert01.StartsAt.Format("2006-01-02 15:04:05"))
+	resultParam.WriteString(" 时发生了 ")
+	resultParam.WriteString(alert01.Labels["alertname"])
+	resultParam.WriteString(" 事件,具体错误: ")
+	resultParam.WriteString(alert01.Annotations.Values()[0])
+
+	fmt.Println(resultParam.String())
+
+	resultParamJson := `{"data": "` + resultParam.String() + `"}`
+
+	request.TemplateParam = resultParamJson
 
 	resp, err := n.client.SendSms(request)
+
+	fmt.Println(resp)
 
 	if err != nil {
 		return false, err
 	}
 
 	if resp.Code == "OK" {
-		return true, errors.New(resp.Message)
+		return true, nil
 	}
 
 	return false, errors.New(resp.Message)
